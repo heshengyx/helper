@@ -17,62 +17,45 @@
 				<ul class="breadcrumb">
 					<li>
 						<i class="icon-home home-icon"></i>
-						<a href="#">Home</a>
+						<a href="${ctx}/manage">首页</a>
 					</li>
-
-					<li>
-						<a href="#">Tables</a>
-					</li>
-					<li class="active">jqGrid plugin</li>
-				</ul><!-- .breadcrumb -->
-
-				<!-- <div class="nav-search" id="nav-search">
-					<form class="form-search">
-						<span class="input-icon">
-							<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-							<i class="icon-search nav-search-icon"></i>
-						</span>
-					</form>
-				</div> -->
-				<!-- #nav-search -->
+					<li class="active">SU文件管理</li>
+				</ul>
 			</div>
 
 			<div class="page-content">
-				<div class="page-header">
+				<!-- <div class="page-header">
 					<h1>
 						SU文件管理
 						<small><i class="icon-double-angle-right"></i>SU文件查询</small>
 					</h1>
-				</div>
-				<!-- /.page-header -->
+				</div> -->
 
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 
-						<!-- <div class="alert alert-info">
-							<i class="icon-hand-right"></i>
-							Please note that demo server is not configured to save the changes, therefore you may get an error message.
-							<button class="close" data-dismiss="alert">
-								<i class="icon-remove"></i>
-							</button>
-						</div> -->
 						<form class="form-horizontal" role="form">
 							<div class="form-group">
-								<label class="col-sm-1 control-label no-padding-right" for="buildingName">楼盘名称</label>
+								<label class="col-sm-1 control-label no-padding-right" for="downloadUrlQuery">下载地址</label>
 								<div class="col-sm-11">
-									<input type="text" id="buildingName" placeholder="楼盘名称" class="col-xs-10 col-sm-5" />
+									<input type="text" id="downloadUrlQuery" placeholder="下载地址" class="col-xs-10 col-sm-5" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-1 control-label no-padding-right" for="packageMd5Query">MD5包</label>
+								<div class="col-sm-11">
+									<input type="text" id="packageMd5Query" placeholder="MD5包" class="col-xs-10 col-sm-5" />
 								</div>
 							</div>
 							
-							
 							<div class="form-group">
 								<div class="col-md-offset-1 col-md-11">
-									<button class="btn btn-sm btn-info" type="button" id="btn-search"><i class="icon-ok bigger-110"></i>查 询</button>
+									<button class="btn btn-sm btn-info" type="button" id="btn-search"><i class="icon-zoom-in bigger-110"></i>查 询</button>
 									&nbsp; &nbsp; &nbsp;
 									<button class="btn btn-sm" type="reset"><i class="icon-undo bigger-110"></i>重 置</button>
 									&nbsp; &nbsp; &nbsp;
-									<button class="btn btn-sm btn-info" type="button" id="btn-add"><i class="icon-ok bigger-110"></i>新 增</button>
+									<button class="btn btn-sm btn-info" type="button" id="btn-add"><i class="icon-plus bigger-110"></i>新 增</button>
 								</div>
 							</div>
 						</form>
@@ -99,11 +82,13 @@
 				datatype: "json",
 				colModel: [
 					{label:'id', name:'id', key:true, index:'id', hidden:true},
+					{label:'下载地址', name:'downloadUrl', index:'downloadUrl'},
+					{label:'MD5包', name:'packageMd5', index:'packageMd5'},
 					{label:'创建时间', name:'createTime', index:'createTime', width:100, formatter:to_date_hms},
-					{label:'操作', name:'opts', index:'opts', width:80, align:'center', formatter: function(cellval, options, row) {
+					{label:'操作', name:'opts', index:'opts', width:50, align:'center', formatter: function(cellval, options, row) {
 						var content = "";
 						content += "<div class=\"visible-md visible-lg hidden-sm hidden-xs action-buttons\">";
-						content += "<a class=\"blue\" href=\"#\"><i class=\"icon-zoom-in bigger-130\"></i></a>";
+						content += "<a class=\"blue\" href=\"#\"><i class=\"icon-list-alt bigger-130\"></i></a>";
 						content += "<a class=\"green\" href=\"javascript:void(0);\" onclick=\"doModify('" + row.id + "')\"><i class=\"icon-pencil bigger-130\"></i></a>";
 						content += "<a class=\"red\" href=\"javascript:void(0);\" onclick=\"doTrash('" + row.id + "');\"><i class=\"icon-trash bigger-130\"></i></a>";
 						content += "</div>";
@@ -137,23 +122,6 @@
 				caption: "SU文件列表",
 				autowidth: true
 			});
-			//navButtons
-			jQuery('#dataGridTable').jqGrid('navGrid', '#dataGridPager',
-				{ 	//navbar options
-					edit: true,
-					editicon : 'icon-pencil blue',
-					add: true,
-					addicon : 'icon-plus-sign purple',
-					del: true,
-					delicon : 'icon-trash red',
-					search: true,
-					searchicon : 'icon-search orange',
-					refresh: true,
-					refreshicon : 'icon-refresh green',
-					view: true,
-					viewicon : 'icon-zoom-in grey',
-				}
-			);
 			
 			$('#btn-search').click(function() {
 				doSearch();
@@ -221,7 +189,8 @@
 				url : "${ctx}/manage/superFile/query?random="+ Math.random(),
 				page : page,
 				postData : {
-					//buildingName : $.trim($("#buildingName").val())
+					downloadUrl : $.trim($("#downloadUrlQuery").val()),
+					packageMd5 : $.trim($("#packageMd5Query").val())
 				},
 				datatype: "json"
 			}).trigger("reloadGrid");

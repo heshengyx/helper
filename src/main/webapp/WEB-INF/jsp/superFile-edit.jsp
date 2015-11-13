@@ -2,17 +2,21 @@
 <%@ include file="/common/include.jsp"%>
 <form class="form-horizontal" role="form">
 	<div class="form-group">
-		<label class="col-sm-2 control-label no-padding-right" for="buildingNameEdit">楼盘名称</label>
+		<label class="col-sm-2 control-label no-padding-right" for="downloadUrlEdit">下载地址</label>
 		<div class="col-sm-10">
-			<input type="text" id="buildingNameEdit" placeholder="楼盘名称" class="col-xs-10 col-sm-10" />
+			<input type="text" id="downloadUrlEdit" placeholder="下载地址" class="col-xs-10 col-sm-10" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label no-padding-right" for="packageMd5Edit">MD5包</label>
+		<div class="col-sm-10">
+			<input type="text" id="packageMd5Edit" placeholder="MD5包" class="col-xs-10 col-sm-10" />
 		</div>
 	</div>
 	
 	<div class="form-group">
 		<div class="col-md-offset-2 col-md-10">
-			<button class="btn btn-sm btn-info" type="button" id="btn-update"><i class="icon-ok bigger-110"></i>保 存</button>
-			&nbsp; &nbsp; &nbsp;
-			<button class="btn btn-sm" type="button" id="btn-close"><i class="icon-undo bigger-110"></i>关 闭</button>
+			<button class="btn btn-sm btn-info" type="button" id="btn-update"><i class="icon-save bigger-110"></i>保 存</button>
 		</div>
 	</div>
 </form>
@@ -33,8 +37,8 @@ $(document).ready(function() {
 			    cancel: false
 			}).showModal();
 		} else {
-			//$("#buildingNameEdit").val(result.data.buildingName);
-			//$("#buildingAddressEdit").val(result.data.buildingAddress);
+			$("#downloadUrlEdit").val(result.data.downloadUrl);
+			$("#packageMd5Edit").val(result.data.packageMd5);
 		}
 	}, "json");
 	
@@ -42,8 +46,8 @@ $(document).ready(function() {
 		url = "${ctx}/manage/superFile/update?random="+ Math.random();
 		params = {
 			id: "${param.id}",
-			//buildingName: $("#buildingNameEdit").val(),
-			//buildingAddress: $("#buildingAddressEdit").val()
+			downloadUrl: $("#downloadUrlEdit").val(),
+			packageMd5: $("#packageMd5Edit").val()
 		};
 		$.post(url, params, function(result) {
 			dialog({

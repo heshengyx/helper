@@ -3,6 +3,9 @@
 <mapper namespace="com.root.helper.mapper.ISuperFileMapper">
 	<resultMap type="com.root.helper.entity.SuperFile" id="superFileResult">
 		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="RESULT" property="result" jdbcType="VARCHAR" />
+		<result column="DOWNLOAD_URL" property="downloadUrl" jdbcType="VARCHAR" />
+		<result column="PACKAGE_MD5" property="packageMd5" jdbcType="VARCHAR" />
 <result column="STATUS" property="status" jdbcType="VARCHAR" />
 <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
 <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
@@ -25,9 +28,12 @@
 	</select>
 	
 	<insert id="save" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO SUPER_FILE (ID, STATUS, CREATE_TIME, REMARKS)
+		INSERT INTO SUPER_FILE (ID, RESULT, DOWNLOAD_URL, PACKAGE_MD5, STATUS, CREATE_TIME, REMARKS)
 		VALUES (
 #{param.id, jdbcType=VARCHAR},
+#{param.result, jdbcType=VARCHAR},
+#{param.downloadUrl, jdbcType=VARCHAR},
+#{param.packageMd5, jdbcType=VARCHAR},
 #{param.status, jdbcType=VARCHAR},
 #{param.createTime, jdbcType=TIMESTAMP},
 #{param.remarks, jdbcType=VARCHAR})

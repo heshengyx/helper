@@ -2,11 +2,8 @@
 <sitemesh>
 	<!-- 对不同的路径，启用不同的装饰器 -->
 	<mapping path="/manage" decorator="/WEB-INF/layout/mainLayout.jsp"/>
-	<mapping path="/manage/building" decorator="/WEB-INF/layout/mainLayout.jsp"/>
-	<mapping path="/manage/house" decorator="/WEB-INF/layout/mainLayout.jsp"/>
-	<mapping path="/manage/house/add" decorator="/WEB-INF/layout/mainLayout.jsp"/>
-    <mapping path="/manage/houseImage" decorator="/WEB-INF/layout/mainLayout.jsp"/>
-    <!-- sitemesh-conf -->
+	<mapping path="/manage/superFile" decorator="/WEB-INF/layout/mainLayout.jsp"/>
+	<!-- sitemesh-conf -->
 	
 	<!-- 排除，不进行装饰的路径 -->
 	<mapping path="/avatars/*" exclude="true"/>
@@ -19,8 +16,8 @@
 	<mapping path="/uploads/*" exclude="true"/>
 	
 	<!-- 自定义 tag 规则 -->
-	<!-- <content-processor>
-		<tag-rule-bundle class="com.house.building.tag.NavTitleTagRuleBundle" />
-		<tag-rule-bundle class="com.house.building.tag.JscriptTagRuleBundle" />
-	</content-processor> -->
+	<content-processor>
+		<tag-rule-bundle class="com.root.helper.tag.NavTitleTagRuleBundle" />
+		<tag-rule-bundle class="com.root.helper.tag.JscriptTagRuleBundle" />
+	</content-processor>
 </sitemesh>
