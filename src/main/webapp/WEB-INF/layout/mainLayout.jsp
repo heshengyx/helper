@@ -127,11 +127,16 @@
 								<span class="menu-text"> 首页 </span>
 							</a>
 						</li>
-						
 						<li>
 							<a href="${ctx}/manage/superFile">
 								<i class="icon-file-alt"></i>
 								<span class="menu-text"> SU文件管理 </span>
+							</a>
+						</li>
+						<li>
+							<a href="${ctx}/manage/clazz">
+								<i class="icon-file-alt"></i>
+								<span class="menu-text"> 类文件管理 </span>
 							</a>
 						</li>
 					</ul>
