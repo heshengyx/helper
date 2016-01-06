@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemesh>
-	<!-- 对不同的路径，启用不同的装饰器 -->
+	<!-- 瀵逛笉鍚岀殑璺緞锛屽惎鐢ㄤ笉鍚岀殑瑁呴グ鍣� -->
 	<mapping path="/manage" decorator="/WEB-INF/layout/mainLayout.jsp"/>
-	<mapping path="/manage/superFile" decorator="/WEB-INF/layout/mainLayout.jsp"/>
 	<mapping path="/manage/clazz" decorator="/WEB-INF/layout/mainLayout.jsp"/>
-	<!-- sitemesh-conf -->
+	<mapping path="/manage/pad" decorator="/WEB-INF/layout/mainLayout.jsp"/>
+    <!-- sitemesh-conf -->
 	
-	<!-- 排除，不进行装饰的路径 -->
+	<!-- 鎺掗櫎锛屼笉杩涜瑁呴グ鐨勮矾寰� -->
 	<mapping path="/avatars/*" exclude="true"/>
 	<mapping path="/images/*" exclude="true"/>
 	<mapping path="/css/*" exclude="true"/>
@@ -16,7 +16,7 @@
 	<mapping path="/plugins/*" exclude="true"/>
 	<mapping path="/uploads/*" exclude="true"/>
 	
-	<!-- 自定义 tag 规则 -->
+	<!-- 鑷畾涔� tag 瑙勫垯 -->
 	<content-processor>
 		<tag-rule-bundle class="com.root.helper.tag.NavTitleTagRuleBundle" />
 		<tag-rule-bundle class="com.root.helper.tag.JscriptTagRuleBundle" />

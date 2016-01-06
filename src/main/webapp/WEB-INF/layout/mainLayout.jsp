@@ -139,6 +139,12 @@
 								<span class="menu-text"> 类文件管理 </span>
 							</a>
 						</li>
+						<li>
+							<a href="${ctx}/manage/pad">
+								<i class="icon-file-alt"></i>
+								<span class="menu-text"> PAD管理 </span>
+							</a>
+						</li>
 					</ul>
 
 					<div class="sidebar-collapse" id="sidebar-collapse">
